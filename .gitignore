@@ -13,3 +13,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/laradock
+/public/js
+/public/css
+/public/build
+/public/mix-manifest.json
+.DS_Store
