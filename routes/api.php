@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\AdminA3Controller;
 use App\Http\Controllers\Api\CitizenController;
 use App\Http\Controllers\Api\SuperAdminController;
 use App\Http\Controllers\Api\UserB1Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ProvinceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -30,6 +30,7 @@ Route::prefix('auth')->group(function() {
 
 Route::group(['middleware' => ['auth.api', 'role:Super Admin']], function () {
     Route::get('/list-a2', [SuperAdminController::class, 'listA2'])->name('list-admin-a2');
+    Route::get('/list-province', [ProvinceController::class, 'getListProvinces'])->name('list-province');
     Route::post('/store-a2', [SuperAdminController::class, 'storeA2'])->name('store-admin-a2');
     Route::put('/update-a2', [SuperAdminController::class, 'updateA2'])->name('update-admin-a2');
 });
@@ -58,5 +59,4 @@ Route::group(['middleware' => ['auth.api', 'role:User B1']], function () {
 
 Route::group(['middleware' => ['auth.api', 'role:User B1|User B2']], function () {
     Route::post('/declare-citizen-info', [CitizenController::class, 'declareCitizenInformation'])->name('declare-citizen-info');
-    Route::get('/list-b1', [AdminA3Controller::class, 'listB1'])->name('list-user-b1');
 });
